@@ -25,6 +25,7 @@ std::string AUTHOR_NAME       = "Nick Badovinac";
 DoubleNode::DoubleNode(NodeValue newValue)
     : value(newValue), prevPtr(nullptr), nextPtr(nullptr)
 {
+    
 }
 
 /// Const getter: return the stored value.
