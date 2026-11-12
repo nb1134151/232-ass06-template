@@ -84,8 +84,8 @@ void test_delete_middle_keeps_links(void)
     llist.deleteValue(2);
 
 
-    TEST_ASSERT_TRUE_MESSAGE(std::get<int>(llist.popBackValue().value()) == 3, "TODO: Implement this test");
-    TEST_ASSERT_TRUE_MESSAGE(std::get<int>(llist.popBackValue().value()) == 1, "TODO: Implement this test");
+    TEST_ASSERT_TRUE_MESSAGE(std::get<int>(llist.popBackValue().value()) == 3, "Error: popBackValue is not 3");
+    TEST_ASSERT_TRUE_MESSAGE(std::get<int>(llist.popBackValue().value()) == 1, "Error: second instance of popBackValue is not 1");
 
 }
 
@@ -123,3 +123,5 @@ void test_std_pop_on_empty_list(void)
     TEST_ASSERT_TRUE_MESSAGE(llist.popFrontValue().has_value() == false, "TODO: Implement this test");
 
 }
+
+

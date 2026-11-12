@@ -178,9 +178,9 @@ DoubleNode *DoublyLinkedList::detachValue(NodeValue value)
 
         vNode->setNext(nullptr);
         vNode->setPrev(nullptr);
-
+        count--;
     }
-    count--;
+    
     return vNode;
 }
 
@@ -276,7 +276,6 @@ bool DoublyLinkedList::deleteValue(NodeValue value)
 
     delete vNode;
 
-    count--;
 
     return true;
 }
@@ -324,19 +323,25 @@ int DoublyLinkedList::printForward() const
 /// Print values tail -> head using prevPtr. Return the number of printed values.
 int DoublyLinkedList::printBackward() const
 {
-    
+
     DoubleNode* vNode = tailPtr;
     int printed_values = 0;
 
     while (vNode != nullptr) {
         std::visit([](const auto& val) {
-        std::cout << val << " " << "\n";
+            std::cout << val;
         }, vNode->getValue());
+
+        if (vNode->getPrev() != nullptr) {
+            std::cout << " ";
+        }
 
         printed_values++;
 
         vNode = vNode->getPrev();
     }
+    
+    std::cout << "\n";
     return printed_values;
 }
 
@@ -432,18 +437,22 @@ int StdDoublyLinkedList::printForward() const
 /// Print tail -> head (same format as Part 2). Return the number of values.
 int StdDoublyLinkedList::printBackward() const
 {
-    for (auto val = data.end(); val != data.end(); ++val) {
+    for (auto val = data.rbegin(); val != data.rend(); ++val) {
         std::visit([](const auto& vval) {
-            std::cout << vval << " ";
+            std::cout << vval;
         }, *val);
+
+        if (std::next(val) != data.rend()) {
+            std::cout << " ";
+        }
     }
+    std::cout << "\n";
     return data.size();
 }
 
 /// size() returns size_t, length() returns int.
 int StdDoublyLinkedList::length() const
 {
-    
     return data.size();
 }
 // ===== END PART 3 (do not remove this marker) =====
