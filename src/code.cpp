@@ -284,21 +284,19 @@ bool DoublyLinkedList::deleteValue(NodeValue value)
 bool DoublyLinkedList::containsValue(NodeValue value) const
 {
 
-    if (headPtr == nullptr) {
-        return false;
-    }
+
 
     DoubleNode* vNode = headPtr;
 
-    while (vNode->getValue() != value) {
-        vNode = vNode->getNext();
+    while (vNode != nullptr) {
 
-        if (vNode->getNext() == nullptr) {
-            return false;
+        if(vNode->getValue() == value) {
+            return true;
         }
+        vNode = vNode->getNext();
     }
 
-    return true;
+    return false;
 }
 
 /// Print values head -> tail with std::visit (each followed by a space,
@@ -340,7 +338,7 @@ int DoublyLinkedList::printBackward() const
 
         vNode = vNode->getPrev();
     }
-    
+
     std::cout << "\n";
     return printed_values;
 }
